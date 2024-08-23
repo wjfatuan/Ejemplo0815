@@ -1,12 +1,8 @@
 package com.example.ejemplo0815
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.ejemplo0815.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,23 +18,22 @@ class MainActivity : AppCompatActivity() {
         resetNumbers()
 
         binding.buttonLeft.setOnClickListener{
-            if(leftNumber>=rightNumber) {
-                binding.myText.text = "You are a winner!!"
-            }
-            else {
-                binding.myText.text = "Good luck next time :("
-            }
-            resetNumbers()
+            binding.myText.text = checkResult(leftNumber,rightNumber)
         }
 
         binding.buttonRight.setOnClickListener{
-            if(leftNumber<=rightNumber) {
-                binding.myText.text = "You are a winner!!"
-            }
-            else {
-                binding.myText.text = "Good luck next time :("
-            }
-            resetNumbers()
+            binding.myText.text = checkResult(rightNumber, leftNumber)
+        }
+
+    }
+
+    fun checkResult(guess: Int, other:Int): String {
+        resetNumbers()
+        if(guess>=other) {
+            return "You are a winner!!"
+        }
+        else {
+            return "Good luck next time :("
         }
 
     }
